@@ -1,0 +1,11 @@
+{
+    "tests" : {
+        "root" : "./pandas_samples",
+        "samples" : "/samples",
+        "answers" : "/answers"
+    },
+    "settings" : {
+        "columns" : ["EVENT", "AVGTSMR"],
+        "output" : "./output"
+    }
+}
