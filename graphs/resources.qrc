@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>resources/new-document.png</file>
+    <file>resources/floppy-disk.png</file>
+    <file>resources/settings.png</file>
+    <file>resources/info.png</file>
+    <file>resources/log-out.png</file>
+</qresource>
+</RCC>
