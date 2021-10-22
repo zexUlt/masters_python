@@ -41,5 +41,8 @@ class KevinBacon():
             del paths[self.__KEVIN__]
         return paths
     
-    def getFilmByActors(self, actor_1: str, actor_2: str) -> dict:
+    def getFilmByActors(self, actor_1: str, actor_2: str) -> tuple:
         return self.G.get_edge_data(actor_1, actor_2)['name']
+
+    def getActors(self) -> 'list[str]':
+        return list(self.G)
