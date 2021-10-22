@@ -1,7 +1,7 @@
 import re
 import itertools
 
-from PyQt5.QtCore import pyqtSignal, QPropertyAnimation, QRect
+from PyQt5.QtCore import QAbstractAnimation, pyqtSignal, QPropertyAnimation, QRect
 from PyQt5.QtWidgets import QFileDialog, QMainWindow, QMessageBox
 
 from src.communicator import Communicator
@@ -27,7 +27,7 @@ class Window(QMainWindow, Ui_MainWindow):
         self.comm = Communicator()
         self.connectSignalsSlots()
         self.animateAds()
-        print(self.gridLayout.geometry())
+        print(self.gridLayout.contentsRect())
 
     def connectSignalsSlots(self) -> None:
         self.actionNew.triggered.connect(self.new)
@@ -37,22 +37,28 @@ class Window(QMainWindow, Ui_MainWindow):
         self.runBtn.clicked.connect(self.run)
         self.comm.settingsApplied.connect(self.applySettings)
         self.fileLoaded.connect(self.updateDescr)
+        self.comm.animationToggled.connect(self.toggleAnimation)
 
     def animateAds(self):
         starting_rect = QRect(-400, self.geometry().height() / 2 - 60, 300, 30)
         ending_rect = QRect(
-                starting_rect.x() + 741, self.geometry().height() / 2 - 60, 
+                self.geometry().width() / 2 + 200, self.geometry().height() / 2 - 60, 
                 300, 30
             )
-        # print(initial_rect, starting_rect, ending_rect)
-        self.anim = QPropertyAnimation(self.ads, b"geometry")
+        self.anim = QPropertyAnimation(self.ads, b"geometry", parent=self)
         self.anim.setDuration(3000)
         self.anim.setLoopCount(-1)
         self.anim.setStartValue(starting_rect)
         self.anim.setEndValue(ending_rect)
         self.anim.start()
 
-
+    def toggleAnimation(self, newAnimState: bool):
+        if newAnimState:
+            if self.anim.state() == QAbstractAnimation.State.Paused:
+                self.anim.resume()
+        else:
+            if self.anim.state() == QAbstractAnimation.State.Running:
+                self.anim.pause()
 
     def showPreferences(self) -> None:
         settings_window = SettingsWidget(self, self.comm)

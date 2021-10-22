@@ -88,7 +88,7 @@
          <enum>QFrame::NoFrame</enum>
         </property>
         <property name="text">
-         <string>Здесь могла быть ваша реклама!</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; font-weight:600;&quot;&gt;Здесь могла быть ваша реклама!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
