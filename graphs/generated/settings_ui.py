@@ -14,7 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_settingsWindow(object):
     def setupUi(self, settingsWindow):
         settingsWindow.setObjectName("settingsWindow")
-        settingsWindow.resize(307, 72)
+        settingsWindow.resize(307, 101)
+        settingsWindow.setMinimumSize(QtCore.QSize(307, 101))
+        settingsWindow.setMaximumSize(QtCore.QSize(307, 101))
         self.formLayout = QtWidgets.QFormLayout(settingsWindow)
         self.formLayout.setObjectName("formLayout")
         self.forSpecRBtn = QtWidgets.QRadioButton(settingsWindow)
@@ -27,6 +29,10 @@ class Ui_settingsWindow(object):
         self.applyBtn = QtWidgets.QPushButton(settingsWindow)
         self.applyBtn.setObjectName("applyBtn")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.applyBtn)
+        self.animToggle = QtWidgets.QCheckBox(settingsWindow)
+        self.animToggle.setChecked(True)
+        self.animToggle.setObjectName("animToggle")
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.animToggle)
 
         self.retranslateUi(settingsWindow)
         QtCore.QMetaObject.connectSlotsByName(settingsWindow)
@@ -37,3 +43,4 @@ class Ui_settingsWindow(object):
         self.forSpecRBtn.setText(_translate("settingsWindow", "Calculate for specified"))
         self.forAllRBtn.setText(_translate("settingsWindow", "Calculate for all"))
         self.applyBtn.setText(_translate("settingsWindow", "Apply settings"))
+        self.animToggle.setText(_translate("settingsWindow", "Animation enabled"))

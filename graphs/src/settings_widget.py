@@ -12,6 +12,7 @@ class SettingsWidget(QDialog, Ui_settingsWindow):
     
     def connectSignalSlots(self) -> None:
         self.applyBtn.clicked.connect(self.applyClicked)
+        # self.animToggle.stateChanged.connect(self.applyClicked)
         
     def applyClicked(self):
         self.comm.settingsApplied.emit(
@@ -20,3 +21,4 @@ class SettingsWidget(QDialog, Ui_settingsWindow):
                 self.forSpecRBtn.isChecked()
             )
         )
+        self.comm.animationToggled.emit(self.animToggle.isChecked())
